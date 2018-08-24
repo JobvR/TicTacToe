@@ -112,7 +112,7 @@ public class TicTacToeActivity extends AppCompatActivity implements View.OnClick
                             TicTacToeActivity.this.finish();
                         }
                     }).show();
-        }else if(!checkForWin() && roundCounter == 9) {
+        } else if (!checkForWin() && roundCounter == 9) {
             new AlertDialog.Builder(TicTacToeActivity.this)
                     .setTitle(String.valueOf(checkForWinner()))
                     .setMessage("Do you want new game")
@@ -141,7 +141,7 @@ public class TicTacToeActivity extends AppCompatActivity implements View.OnClick
                 board[0][1] = button.getText().toString().charAt(0);
                 break;
             case R.id.button3:
-                board[0][2] = button.getText().toString().charAt(0);
+                board[0][2] = button.getText().charAt(0);
                 break;
             case R.id.button4:
                 board[1][0] = button.getText().toString().charAt(0);
@@ -200,17 +200,36 @@ public class TicTacToeActivity extends AppCompatActivity implements View.OnClick
         return false;
     }
 
+    void checkRow() {
+        int[] field = new int[9];
+        for (int i = 0; i < field.length; i += 3) {
+            if (field[i] == field[i + 1] && field[i] == field[i + 2]) {
+
+            }
+        }
+    }
+
+    void checkColumn() {
+        int[] field = new int[9];
+        for (int i = 0; i < 3; i ++) {
+            if (field[i] == field[i + 3] && field[i] == field[i + 6]) {
+
+            }
+        }
+    }
+
     private String checkForWinner() {
         if (checkForWin()) {
             if (roundCounter == 5 || roundCounter == 7 || roundCounter == 9) {
                 result = "Player 1 wins!";
-            }else if(roundCounter == 6 || roundCounter == 8){
+            } else if (roundCounter == 6 || roundCounter == 8) {
                 result = "Player 2 wins!";
             }
-        }else if (!checkForWin()){
-            if (roundCounter == 9){
+        } else if (!checkForWin()) {
+            if (roundCounter == 9) {
                 result = "Draw!";
             }
-        } return result;
+        }
+        return result;
     }
 }
